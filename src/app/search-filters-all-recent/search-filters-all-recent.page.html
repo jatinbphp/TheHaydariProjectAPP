@@ -1,0 +1,114 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>search-filters</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+	<div class="mainContent">
+		<div class="pg-title-main">
+			<h2>Filter</h2>
+			<ion-icon name="close" (click)="dismissFilterModal()"></ion-icon>
+		</div>
+		<form [formGroup]="loginForm" (ngSubmit)="applyFilters(loginForm.value)">
+			<div class="filter-topics-list">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Search By</ion-label>
+						<ion-select formControlName="selected_search_by" (ionChange)="SelectedOption($event)">
+							<ion-select-option value="by_poem_type">Poem Type</ion-select-option>
+							<ion-select-option value="by_subject_occassion">Subject/Occasion</ion-select-option>
+						</ion-select>
+					</ion-item>					
+				</ion-list>
+			</div>
+			<div class="filter-topics-list" *ngIf="search_with_subject_occassion == true">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Subject/Occasion</ion-label>
+						<ion-select formControlName="subject_occassion" multiple="true">
+							<ion-select-option *ngFor="let SubjectOccasion of resultSubjectOccasion;" value="{{SubjectOccasion.id}}">{{SubjectOccasion.subjectName}}</ion-select-option>
+						</ion-select>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+							<ng-container *ngFor="let validation of validation_messages.subject_occassion">
+							  <div class="error-message"
+								*ngIf="loginForm.get('subject_occassion').hasError(validation.type) && (loginForm.get('subject_occassion').dirty || loginForm.get('subject_occassion').touched)">
+								<ion-icon name="information-circle-outline"></ion-icon>
+								<p>{{ validation.message }}</p>
+							  </div>
+							</ng-container>
+						  </div>
+						  <!--VALIDATION-->
+					</ion-item>					
+				</ion-list>
+			</div>
+			<div class="filter-topics-list" *ngIf="search_with_poem_type == true">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Poem Type</ion-label>
+						<ion-select formControlName="poem_type" multiple="true">
+							<ion-select-option *ngFor="let PoemType of resultPoemTypes;" value="{{PoemType.id}}">{{PoemType.PoemTypeName}}</ion-select-option>
+						</ion-select>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+							<ng-container *ngFor="let validation of validation_messages.poem_type">
+							  <div class="error-message"
+								*ngIf="loginForm.get('poem_type').hasError(validation.type) && (loginForm.get('poem_type').dirty || loginForm.get('poem_type').touched)">
+								<ion-icon name="information-circle-outline"></ion-icon>
+								<p>{{ validation.message }}</p>
+							  </div>
+							</ng-container>
+						  </div>
+						  <!--VALIDATION-->
+					</ion-item>										
+				</ion-list>
+			</div>
+			<div class="filter-topics-list">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Language</ion-label>
+						<ion-select formControlName="languages" multiple="true" (ionChange)="LanguageHaveBeenSelected($event)">
+							<ion-select-option *ngFor="let Language of resultLanguages;" value="{{Language.id}}">{{Language.LanguageName}}</ion-select-option>
+						</ion-select>
+					</ion-item>										
+				</ion-list>
+			</div>
+			<div class="filter-topics-list">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Reciter</ion-label>
+						<ion-select formControlName="reciters" multiple="true" (ionChange)="ReciterHaveBeenSelected($event)">
+							<ion-select-option *ngFor="let Reciters of resultReciters;" value="{{Reciters.id}}">{{Reciters.ReciterName}}</ion-select-option>
+						</ion-select>
+					</ion-item>										
+				</ion-list>
+			</div>
+			<div class="filter-topics-list">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Poet</ion-label>
+						<ion-select formControlName="poets" multiple="true" (ionChange)="PoetHaveBeenSelected($event)">
+							<ion-select-option *ngFor="let Poets of resultPoets;" value="{{Poets.id}}">{{Poets.PoetName}}</ion-select-option>
+						</ion-select>
+					</ion-item>										
+				</ion-list>
+			</div>
+			<div class="filter-topics-list">
+				<ion-list class="filter-topic-item">
+					<ion-item class="filter-topic-title">
+						<ion-label position="stacked">Translated</ion-label>
+						<ion-select formControlName="translated" (ionChange)="TranslatedHaveBeenSelected($event)">
+							<ion-select-option value="yes">Yes</ion-select-option>
+							<ion-select-option value="no">No</ion-select-option>
+						</ion-select>
+					</ion-item>					
+				</ion-list>
+			</div>
+			<div class="filter-src-btn">
+				<ion-button type="submit" [disabled]="!loginForm.valid || is_anything_have_been_searched != true">Search</ion-button>
+				<ion-button color="danger" (click)="clearAppliedFilters()">Clear</ion-button>
+			</div>
+		</form>		
+	</div>
+</ion-content>

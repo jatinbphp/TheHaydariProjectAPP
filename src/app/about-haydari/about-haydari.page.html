@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons>
+    <ion-title>Wishlist</ion-title>    
+  </ion-toolbar> -->
+  	<ion-toolbar class="header-top-box">
+		<ion-buttons slot="start">
+			<ion-menu-button>
+				<ion-icon name="menu"></ion-icon>
+			</ion-menu-button>
+		</ion-buttons>
+		<!-- <ion-title class="ion-text-center">About The Project</ion-title> -->
+		<ion-chip slot="end" (click)="showMyProfile()">
+			<ion-img src="../assets/images/Profile-Icon.svg"></ion-img>
+		</ion-chip>
+    <app-qbyte-card 			 
+		[qbyte]="resultPoemsDetail" 
+		[isDisabled]="true"
+		(play)="playAudio($event)"
+		(detail)="onDetail($event)" *ngIf="is_audio_played == true">
+		</app-qbyte-card>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <div class="mainContent">
+    <h3>About The Project</h3>
+    <p>As azadars, it is very common to find ourselves searching the web to find a write-up for our desired poem. What is much more difficult to come across, however, is the translations for those same poems. Due to the fact that most of the Urdu/Punjabi poetry we are used to is written back home by native speakers, the motivation to include translations is minimal.</p>
+    <p>Many reciters in the West do not have the fortune of being fluent in their mother tongue and therefore are not able to intuitively grasp the weight of what is being recited. Similarly, much of the audience may not appreciate the act of poetry recitation for the same reason.</p>
+    <p>The Haydari Project was born in concept over 2 years ago when a few mu'mineen recognized this problem and decided to solve it for themselves. With the help of native-speaking Urdu family members, they translated some of their favorite poems and created a pseudo database in Google Drive.</p>
+    <p>Over time, the number of translations grew and were shared with other mu'mineen who faced a similar language barrier. Due to the overwhelming appreciation for these translations, the idea for the Haydari Project app was created...</p>
+    <p>The Haydari Project is an initiative that essentially brings together poetry write-ups (transliteration) and their accompanying translations to the accessibility of a clean and concise mobile application. Additionally, the app looks to improve upon some aspects of the recitation world, such as:</p>
+    <ion-list>
+      <ion-item><ion-icon name="ellipse-sharp"></ion-icon><ion-label text-wrap>Filtering between poems based on Reciter/Subject/Language</ion-label></ion-item>
+      <ion-item><ion-icon name="ellipse-sharp"></ion-icon><ion-label text-wrap>'Reciter Mode' enables certain features while the user is reciting</ion-label></ion-item>
+      <ion-item><ion-icon name="ellipse-sharp"></ion-icon><ion-label text-wrap>'Submit a Poem' feature which allows the public to request poems to be uploaded and translated</ion-label></ion-item>
+      <ion-item><ion-icon name="ellipse-sharp"></ion-icon><ion-label text-wrap>Sharing capabilities to send poems to your fellow mu'mineen</ion-label></ion-item>
+      <ion-item><ion-icon name="ellipse-sharp"></ion-icon><ion-label text-wrap>Recordings database to upload your own audio files that are attached to their respective write-ups</ion-label></ion-item>
+      <ion-item><ion-icon name="ellipse-sharp"></ion-icon><ion-label text-wrap>And many more Insha'Allah!</ion-label></ion-item>
+    </ion-list>
+    <ion-list class="contributionLink" *ngIf="resultContributionLinks.length > 0">
+      <!--<ion-list-header>Contribute to our App</ion-list-header>-->
+      <ion-item *ngFor="let contributionLink of resultContributionLinks;" (click)="OpenContributionURL(contributionLink.link)">
+        <ion-label>
+          <p class="contributionLink-Title">{{contributionLink.title}}</p>
+          <p [innerHTML]="contributionLink.description"></p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

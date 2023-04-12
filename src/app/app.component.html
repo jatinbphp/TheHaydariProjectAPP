@@ -1,0 +1,97 @@
+<ion-app>
+  <!--BEFORE::BELOW LINE ONLY-->
+  <!--<ion-router-outlet></ion-router-outlet>-->
+  <!--BEFORE::BELOW LINE ONLY-->
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>
+            <h2>the <br>haydari <br>project</h2>
+            <ion-icon name="close-outline" (click)="closeMenu()"></ion-icon>
+          </ion-list-header>
+          <div class="menu-list">
+            <!--DYNAMIC MENU STARTS-->
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index" [ngClass]="{'hideme' : p.to_show_when_network_is_on == 0}">
+              <ion-item *ngIf="p.shouldFunction == 0 && p.to_show_when_network_is_on == 1 && p.is_contribution_link==0" lines="full" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="is_network_connected == 1 && i == 1" lines="full" lines="none" detail="false" class="poem-type">
+                <ion-label>Poem Types</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.shouldFunction == 1 && p.to_show_when_network_is_on == 1 && p.title!='Profile' && p.title!='Logout' && p.title!='Submit A Poem' && p.is_contribution_link==0" lines="full" lines="none" detail="false" (click)="showPoemByPoemTypeORSubjectOccassion(p.id,p.title,'by_poem_type')">
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.shouldFunction == 1 && p.to_show_when_network_is_on == 1 && p.title=='Submit A Poem' && p.is_contribution_link==0" lines="full" lines="none" detail="false" (click)="SubmitAPoem()">
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.shouldFunction == 1 && p.to_show_when_network_is_on == 1 && p.title=='Profile' && p.is_contribution_link==0" lines="full" lines="none" detail="false" (click)="showMyProfile()">
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.shouldFunction == 1 && p.to_show_when_network_is_on == 1 && p.is_contribution_link==1" lines="full" lines="none" detail="false" (click)="OpenContributionURL(p.url)">
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.shouldFunction == 1 && p.to_show_when_network_is_on == 1 && p.title=='Logout' && is_user_login==true && p.is_contribution_link==0" lines="full" lines="none" detail="false" (click)="Logout()">
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>            
+            </ion-menu-toggle>
+            <!--DYNAMIC MENU ENDS-->
+            <!--FIX MENU WITH COLLEPS/EXPAND STARTS-->
+            <!--<ion-menu-toggle auto-hide="false" [ngClass]="{'hideme' : is_network_connected == 0}">
+              <ion-item lines="full" routerDirection="root" routerLink="/tabs/home" lines="none" detail="false">
+                <ion-label>Home</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>            
+            <ion-list *ngIf="is_network_connected == 1" class="poem-type-list">
+              <ion-list-header (click)="expandPoemTypes()">
+                <ion-text>Poem Types</ion-text>
+                <span>
+                  <ion-img src="../assets/images/Sort_Descending-Icon.svg" *ngIf="expanded == false"></ion-img>
+                  <ion-img src="../assets/images/Sort_Ascending-Icon.svg" *ngIf="expanded == true"></ion-img>
+                </span>
+              </ion-list-header>
+              <ion-item>
+                <app-expandable [expanded]="expanded">
+                  <p *ngFor="let item of resultPoemTypesExpandable" (click)="showPoemByPoemTypeORSubjectOccassion(item.id,item.title,'by_poem_type')">{{item.title}}</p>
+                </app-expandable>
+              </ion-item>
+            </ion-list>            
+            <ion-menu-toggle auto-hide="false">
+              <ion-item lines="full" routerDirection="root" routerLink="/tabs/wishlist" lines="none" detail="false">
+                <ion-label>My Bookmarks</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item lines="full" lines="none" detail="false" (click)="SubmitAPoem()">
+                <ion-label>Submit A Poem</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item lines="full" routerDirection="root" routerLink="/about-haydari" lines="none" detail="false">
+                <ion-label>About</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item lines="full" routerDirection="root" routerLink="/tabs/offline" lines="none" detail="false">
+                <ion-label>Offline</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" [ngClass]="{'hideme' : is_network_connected == 0}">
+              <ion-item *ngIf="is_network_connected == 1" lines="full" lines="none" detail="false" (click)="showMyProfile()">
+                <ion-label>Profile</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" *ngIf="is_user_login==true && is_network_connected == 1" [ngClass]="{'hideme' : is_network_connected == 0}">
+              <ion-item lines="full" lines="none" detail="false" (click)="Logout()">
+                <ion-label>Logout</ion-label>
+              </ion-item>              
+            </ion-menu-toggle>-->
+            <!--FIX MENU WITH COLLEPS/EXPAND ENDS-->
+          </div>
+          <ion-item class="btm-cpr-cnt">© Copyright 2021 The Haydari Project</ion-item>
+        </ion-list>        
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content" [swipeGesture]="true"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

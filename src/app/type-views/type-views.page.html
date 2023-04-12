@@ -1,0 +1,122 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>type-views</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header [translucent]="true" no-border class="ion-no-border">
+	<ion-toolbar class="header-top-box">
+		<ion-buttons slot="start">
+			<ion-menu-button>
+				<ion-icon name="menu"></ion-icon>
+			</ion-menu-button>
+		</ion-buttons>
+		<ion-title class="ion-text-center"></ion-title>
+		<ion-chip slot="end" (click)="showMyProfile()">
+			<ion-img src="../assets/images/Profile-Icon.svg"></ion-img>
+		</ion-chip>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="mainContent">
+		<ion-list class="list-boxes-main">
+			<ion-list-header><ion-label>New Releases</ion-label></ion-list-header>
+			<ion-item class="item-box-main clr-red">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="item-box-main clr-red">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="item-box-main clr-green">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="ion-text-center btns-sec">
+				<ion-button class="more-btn" (click)="home()">see more</ion-button>
+			</ion-item>
+		</ion-list>
+		<ion-list class="list-boxes-main">
+			<ion-list-header><ion-label>Trending Now</ion-label></ion-list-header>
+			<ion-item class="item-box-main clr-red">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="item-box-main clr-red">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="item-box-main clr-green">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="ion-text-center btns-sec">
+				<ion-button class="more-btn" (click)="home()">see more</ion-button>
+			</ion-item>
+		</ion-list>
+		<ion-list class="list-boxes-main">
+			<ion-list-header><ion-label>Recently Viewed</ion-label></ion-list-header>
+			<ion-item class="item-box-main clr-red">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="item-box-main clr-red">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="item-box-main clr-green">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<p>Lorem ipsum dolor sit amet ipsumed, ipsum onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...</p>
+				</ion-label>
+			</ion-item>
+			<ion-item class="ion-text-center btns-sec">
+				<ion-button class="more-btn" (click)="home()">see more</ion-button>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>

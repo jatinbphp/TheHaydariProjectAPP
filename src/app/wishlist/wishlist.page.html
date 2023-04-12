@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons>
+    <ion-title>Wishlist</ion-title>    
+  </ion-toolbar> -->
+  	<ion-toolbar class="header-top-box">
+		<ion-buttons slot="start">
+			<ion-menu-button>
+				<ion-icon name="menu"></ion-icon>
+			</ion-menu-button>
+		</ion-buttons>
+		<ion-title class="ion-text-center"></ion-title>
+		<ion-chip slot="end">
+			<ion-button class="translation-icon" [ngClass]="{'active' : is_network_connected==true,'inactive' : is_network_connected==false}">
+				<ion-icon name="wifi-outline"></ion-icon>
+			</ion-button>
+		</ion-chip>
+		<!--<ion-chip slot="end" (click)="showMyProfile()">
+			<ion-img src="../assets/images/Profile-Icon.svg"></ion-img>
+		</ion-chip>-->
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>	
+	<div class="mainContent">
+		<div class="pg-title-main">
+			<h2>My Bookmarks</h2>			
+		</div>
+		<div class="update-filter-main">
+			<div class="update-sec">
+				<h6>Number of Resuts : <strong>{{limitedResultDataBookMark.length}}</strong></h6>
+			</div>			
+		</div>
+		<!--<p *ngIf="id == undefined" class="no-records">You must be <ion-router-link routerDirection="root" routerLink="/login" color="danger">login</ion-router-link> to see your bookmarks.</p>	-->
+		<p class="no-records" *ngIf="limitedResultDataBookMark.length == 0 && id != undefined">No records available</p>
+		<ion-row *ngIf="limitedResultDataBookMark.length > 0" class="list-boxes-main" [ngClass]="{'grid-view' : show_in_view == 'grid'}">
+			<ion-col *ngFor="let poems of limitedResultDataBookMark; let p = index;" [ngClass]="{'clr-green' : p % 2 == 0}" class="item-box-main clr-red"><!--BEFORE::getPoemsDetail(poems.id)-->				
+				<ion-label>
+					<h6 [innerHTML]="poems.PoemName" [style.color]="poems.colorCode" (click)="getPoemsDetail(poems.arrayIndex)"></h6>
+					<div class="pos-icons">
+						<div class="delete" (click)="ConfirmRemovingFromBookMark(poems.id,poems.FromTableNM)">
+							<ion-icon name="trash-outline"></ion-icon>
+						</div>						
+					</div>
+					<div class="nm-icon-list" (click)="getPoemsDetail(poems.arrayIndex)">
+						<div class="nm-icon-item">
+							<!-- <img src="../assets/images/Language-Icon.png"> -->
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 10h-8c-1.657 0-3 1.343-3 3v8c0 1.657 1.343 3 3 3h8c1.657 0 3-1.343 3-3v-8c0-1.657-1.343-3-3-3zm-1.865 11l-.66-1.846h-3l-.663 1.846h-1.66l3.041-8h1.602l3.053 8h-1.713zm-2.153-6.137l1.051 3.018h-2.103l1.052-3.018zm-11.837-6.977c.038.581.104 1.116.194 1.593-1.224.224-1.274-.984-.194-1.593zm8.855-4.886v5h-1c-.743 0-1.442.173-2.076.465-.196-.806-.783-1.53-1.679-1.964.077-.298.123-.522.167-.744l-1.35-.262c-.023.113-.063.328-.136.614-.456-.066-.94-.075-1.431-.025.011-.329.032-.653.06-.963h1.507v-1.279h-1.326c.065-.326.121-.521.176-.705l-1.317-.396c-.097.323-.178.64-.259 1.101h-1.504v1.278h1.341c-.036.414-.057.842-.064 1.275-1.48.544-2.109 1.581-2.109 2.521 0 1.11.876 2.086 2.261 1.96 1.72-.156 2.869-1.456 3.542-3.053.885.536.838 1.161.773 1.552-.966.913-1.576 2.196-1.576 3.625v1h-5c-1.657 0-3-1.343-3-3v-8c0-1.657 1.343-3 3-3h8c1.657 0 3 1.343 3 3zm-7.5 4.467c.327-.042.658-.05.969-.026-.214.476-.496.948-.855 1.319-.055-.396-.093-.83-.114-1.293z"/></svg>
+							<p [innerHTML]="poems.LanguageName" *ngIf="poems.LanguageName!=null"></p>
+							<p *ngIf="poems.LanguageName==null">unknown</p>
+						</div>
+						<div class="nm-icon-item">
+							<!-- <img src="../assets/images/Reciter-Icon.png"> -->
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.526 11.409c-1.052.842-7.941 6.358-9.536 7.636l-2.697-2.697 7.668-9.504 4.565 4.565zm5.309-9.867c-2.055-2.055-5.388-2.055-7.443 0-1.355 1.356-1.47 2.842-1.536 3.369l5.61 5.61c.484-.054 2.002-.169 3.369-1.536 2.056-2.055 2.056-5.388 0-7.443zm-9.834 17.94c-2.292 0-3.339 1.427-4.816 2.355-1.046.656-2.036.323-2.512-.266-.173-.211-.667-.971.174-1.842l-.125-.125-1.126-1.091c-1.372 1.416-1.129 3.108-.279 4.157.975 1.204 2.936 1.812 4.795.645 1.585-.995 2.287-2.088 3.889-2.088 1.036 0 1.98.464 3.485 2.773l1.461-.952c-1.393-2.14-2.768-3.566-4.946-3.566z"/></svg>
+							<p [innerHTML]="poems.ReciterName" *ngIf="poems.ReciterName!=null"></p>
+							<p *ngIf="poems.ReciterName==null">unknown</p>
+						</div>
+						<!--<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p [innerHTML]="poems.PoetName" *ngIf="poems.PoetName!=null"></p>
+							<p *ngIf="poems.PoetName==null">unknown</p>
+						</div>-->
+					</div>
+				</ion-label>
+			</ion-col>			
+		</ion-row>
+	</div>
+</ion-content>

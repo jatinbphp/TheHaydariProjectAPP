@@ -1,0 +1,47 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content fullscreen>
+	<div class="login-main">
+		<ion-grid class="ion-no-padding">
+			<ion-row>
+				<ion-col size="12" class="ion-text-left ion-no-padding">
+					<h1>the <br>haydari <br>project</h1>
+				</ion-col>
+				<ion-col size="2" class="close-icon" (click)="dismissModal()">
+					<!-- <ion-icon name="close"></ion-icon> -->
+					<ion-icon name="chevron-down-outline"></ion-icon>
+				</ion-col>
+				<ion-col size="12" class="ion-text-left ion-no-padding">
+					<h2>{{resultPoemsDetail.PoemName}}</h2>
+				</ion-col>
+				<ion-col size="12" class="ion-text-left ion-no-padding">
+					<!-- <ion-img class="add-radius" src="../assets/images/suboc-img5.png"></ion-img> -->
+					<img class="add-radius" src="../assets/images/suboc-img5.png">
+				</ion-col>
+			</ion-row>
+		</ion-grid>		
+	</div>
+</ion-content>
+<ion-footer class="ion-no-border">
+	<ion-row class="btm-play-box clr-red">
+		<ion-col class="img">
+			<img src="../assets/images/icon1.png">
+		</ion-col>
+		<ion-col class="nms">
+			<h5 class="pm-nm">{{resultPoemsDetail.PoemName}}</h5>
+			<p class="maker-nm">- {{resultPoemsDetail.PoetName}}</p>
+		</ion-col>
+		<ion-col class="icon">
+			<ion-button class="play-btn" *ngIf="isAudioPlayed == true" (click)="pauseAudio()">
+				<ion-icon name="pause-outline"></ion-icon>
+			</ion-button>
+			<ion-button class="play-btn" *ngIf="isAudioPlayed == false && MP3Link!=''" (click)="playAudio()">
+				<ion-icon name="play-outline"></ion-icon>
+			</ion-button>
+		</ion-col>
+	</ion-row>
+</ion-footer>

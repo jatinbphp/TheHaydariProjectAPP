@@ -1,0 +1,113 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content fullscreen>
+	<div class="login-main">
+		<ion-grid class="ion-no-padding">
+			<ion-row>
+				<ion-col size="12" class="ion-text-left ion-no-padding">
+					<h1>the <br>haydari <br>project</h1>
+				</ion-col>
+				<ion-col size="2" class="close-icon" routerDirection="root" routerLink="/tabs/home">
+					<ion-icon name="close"></ion-icon>
+				</ion-col>
+				<ion-col size="12" class="ion-text-left ion-no-padding">
+					<h2>Salāmun 'Alaykum</h2>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<form [formGroup]="signUpForm" (ngSubmit)="makeMeSignUp(signUpForm.value)">
+			<ion-grid class="ion-no-padding">
+				<ion-row *ngIf="currentPlatform == 'ios'">
+					<ion-col size="12" class="ion-text-left ion-no-padding mb-45">
+						<h3>Register</h3>
+					</ion-col>
+					<ion-col size="4" class="ion-text-center ion-no-padding">
+						<ion-button class="border-btn" (click)="AppleLoginORSignup()"><img src="../assets/images/iphone-apple-icon1.png"></ion-button>
+					</ion-col>
+					<ion-col size="4" class="ion-text-center ion-no-padding">
+						<ion-button class="border-btn" (click)="GoogleLoginORSignup()"><img src="../assets/images/google-plus-icon1.png"></ion-button>
+					</ion-col>
+					<ion-col size="4" class="ion-text-center ion-no-padding">
+						<ion-button class="border-btn" (click)="FaceBookLoginORSignup()"><img src="../assets/images/fb-icon1.png"></ion-button>
+					</ion-col>
+				</ion-row>
+				<ion-row *ngIf="currentPlatform == 'android'">
+					<ion-col size="12" class="ion-text-left ion-no-padding mb-45">
+						<h3>Register</h3>
+					</ion-col>
+					<ion-col size="6" class="ion-text-left ion-no-padding">
+						<ion-button class="border-btn" (click)="GoogleLoginORSignup()"><img src="../assets/images/google-plus-icon1.png"></ion-button>
+					</ion-col>
+					<ion-col size="6" class="ion-text-right ion-no-padding">
+						<ion-button class="border-btn" (click)="FaceBookLoginORSignup()"><img src="../assets/images/fb-icon1.png"></ion-button>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12" class="ion-text-left ion-no-padding mb-20 mt-25"><!--BEFORE::SECOND ONE IS mt-60-->
+						<ion-label position="stacked">First name</ion-label>
+	  					<ion-input type="text" placeholder="" formControlName="firstname"></ion-input>
+						<!--VALIDATION-->
+						<div *ngFor="let validation of validation_messages.firstname">                
+							<div class="validation-errors">
+								<ng-container>
+									<div class="error-message" *ngIf="signUpForm.get('firstname').hasError(validation.type) && (signUpForm.get('firstname').dirty || signUpForm.get('firstname').touched)">{{ validation.message }}</div>
+								</ng-container>
+							</div>								
+						</div>
+						<!--VALIDATION-->		  
+					</ion-col>
+					<ion-col size="12" class="ion-text-left ion-no-padding mb-20">
+						<ion-label position="stacked">Last name</ion-label>
+	  					<ion-input type="text" placeholder="" formControlName="lastname"></ion-input>
+						<!--VALIDATION-->
+						<div *ngFor="let validation of validation_messages.lastname">                
+							<div class="validation-errors">
+								<ng-container>
+									<div class="error-message" *ngIf="signUpForm.get('lastname').hasError(validation.type) && (signUpForm.get('lastname').dirty || signUpForm.get('lastname').touched)">{{ validation.message }}</div>
+								</ng-container>
+							</div>								
+						</div>
+						<!--VALIDATION-->		  
+					</ion-col>
+					<ion-col size="12" class="ion-text-left ion-no-padding mb-20">
+						<ion-label position="stacked">Email Address</ion-label>
+	  					<ion-input type="text" placeholder="" formControlName="username" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+						<!--VALIDATION-->
+						<div *ngFor="let validation of validation_messages.username">                
+							<div class="validation-errors">
+								<ng-container>
+									<div class="error-message" *ngIf="signUpForm.get('username').hasError(validation.type) && (signUpForm.get('username').dirty || signUpForm.get('username').touched)">{{ validation.message }}</div>
+								</ng-container>
+							</div>								
+						</div>
+						<!--VALIDATION-->		  
+					</ion-col>
+					<ion-col size="12" class="ion-text-left ion-no-padding mb-20">
+						<ion-label position="stacked">Password</ion-label>
+	  					<ion-input [type]="passwordType" placeholder="" formControlName="password"></ion-input>
+						<ion-icon [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+						<!--VALIDATION-->
+						<div *ngFor="let validation of validation_messages.password">                
+							<div class="validation-errors">
+								<ng-container>
+								<div class="error-message" *ngIf="signUpForm.get('password').hasError(validation.type) && (signUpForm.get('password').dirty || signUpForm.get('password').touched)">{{ validation.message }}</div>
+								</ng-container>
+							</div>								
+						</div>
+						<!--VALIDATION-->
+					</ion-col>					
+					<ion-col size="12" class="ion-text-center ion-no-padding mt-60">
+						<ion-button type="submit" class="log-btn" [disabled]="!signUpForm.valid">Sign up</ion-button>
+					</ion-col>
+					<ion-col size="12" class="ion-text-center ion-no-padding mt-25" routerDirection="root" routerLink="/login">
+						<p>Already have an account? <ion-router-link>Login</ion-router-link></p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</form>
+	</div>
+</ion-content>

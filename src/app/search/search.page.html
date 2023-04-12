@@ -1,0 +1,340 @@
+<ion-header [translucent]="true">
+  <!-- <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons>
+    <ion-title>Search</ion-title>    
+  </ion-toolbar> -->
+  	<ion-toolbar class="header-top-box">
+		<ion-buttons slot="start">
+			<ion-menu-button>
+				<ion-icon name="menu"></ion-icon>
+			</ion-menu-button>
+		</ion-buttons>
+		<ion-title class="ion-text-center"></ion-title>
+		<ion-chip slot="end" (click)="showMyProfile()">
+			<ion-img src="../assets/images/Profile-Icon.svg"></ion-img>
+		</ion-chip>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<!--<ion-header no-border class="ion-no-border">
+		<ion-toolbar class="src-box">
+			<form #searchPoemForm="ngForm" novalidate class="search-form">
+				<ion-searchbar placeholder="Search Poem" type="search" autocomplete="off" autocorrect="off" spellcheck="false" name="search_text" [(ngModel)]="searched_text" [ngModelOptions]="{standalone: false}" (keydown.enter)="searchPoem(searchPoemForm)"></ion-searchbar>
+				<ion-button class="src-icon-btn" (click)="searchPoem(searchPoemForm)">
+					<img src="../assets/images/src-icon1.png">
+				</ion-button>
+				<ion-button class="reset-icon-btn">
+					<ion-icon name="refresh-circle"></ion-icon>
+				</ion-button>
+			</form>
+		</ion-toolbar>
+	</ion-header>-->
+	<div class="mainContent">
+		<ion-list class="list-boxes-main">
+			<ion-list-header>
+				<ion-label>New Releases</ion-label>
+			</ion-list-header>
+			<p class="item-box-main no-records" *ngIf="resultDataNewRelease.length == 0">No records available</p>
+			<ion-item class="item-box-main" [style.color]="newrelease.colorCode" *ngFor="let newrelease of resultDataNewRelease;let n=index;" (click)="getPoemsDetail(newrelease.id)">
+				<!--<ion-avatar>
+					<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="62.000000pt" height="62.000000pt" viewBox="0 0 62.000000 62.000000" preserveAspectRatio="xMidYMid meet">
+						<g transform="translate(0.000000,62.000000) scale(0.100000,-0.100000)"
+						fill="#000000" [style.fill]="newrelease.colorCode" stroke="none">
+						<path d="M250 565 l-54 -55 33 -34 c23 -23 29 -36 21 -41 -7 -4 -25 5 -43 24
+						l-32 31 -87 -87 -88 -88 87 -87 87 -88 32 31 c45 44 66 28 23 -17 l-33 -34 55
+						-55 54 -55 55 55 54 55 -33 34 c-43 45 -22 61 23 17 l32 -31 87 88 87 87 -88
+						88 -87 87 -32 -31 c-18 -19 -36 -28 -43 -24 -8 5 -2 18 21 41 l33 34 -55 55
+						-54 55 -55 -55z m105 -15 l39 -40 -59 -60 c-46 -47 -62 -57 -72 -48 -11 9 -4
+						21 37 63 l51 51 -21 19 c-20 18 -21 18 -42 -3 -18 -18 -19 -23 -8 -37 10 -12
+						10 -19 1 -28 -9 -9 -18 -5 -38 16 l-27 27 39 40 c21 22 44 40 50 40 6 0 29
+						-18 50 -40z m-115 -145 c42 -43 52 -57 42 -67 -10 -10 -22 -2 -60 35 l-47 47
+						-48 -47 c-37 -37 -49 -45 -59 -35 -10 10 -1 24 42 67 30 30 59 55 65 55 6 0
+						35 -25 65 -55z m259 1 c33 -33 51 -59 46 -66 -5 -8 -23 4 -56 36 -47 47 -49
+						47 -68 29 -19 -16 -21 -16 -27 -1 -7 18 21 56 40 56 7 0 36 -24 65 -54z m-102
+						-28 c29 -29 53 -57 53 -63 0 -19 -47 -58 -55 -45 -4 6 -1 18 6 26 10 13 4 23
+						-36 64 -26 26 -44 53 -41 59 11 17 17 14 73 -41z m-235 -31 l-32 -33 31 -31
+						c19 -18 28 -36 24 -43 -5 -8 -21 2 -51 31 l-44 43 42 43 c28 28 45 40 52 33 7
+						-7 -1 -21 -22 -43z m153 23 c-5 -8 -11 -8 -17 -2 -6 6 -7 16 -3 22 5 8 11 8
+						17 2 6 -6 7 -16 3 -22z m163 -97 c-28 -28 -45 -40 -52 -33 -7 7 1 21 22 43
+						l32 33 -31 31 c-19 18 -28 36 -24 43 5 8 21 -2 51 -31 l44 -43 -42 -43z m-263
+						58 c-14 -14 -10 -20 32 -63 37 -38 45 -50 35 -60 -10 -10 -24 0 -67 42 -30 30
+						-55 59 -55 64 0 5 10 20 22 33 17 18 24 20 35 11 12 -10 12 -14 -2 -27z m139
+						21 c3 -5 -15 -28 -39 -52 -38 -37 -45 -41 -51 -26 -5 12 4 28 27 52 32 34 53
+						42 63 26z m-99 -31 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0 11 -4 15 -9z
+						m130 0 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0 11 -4 15 -9z m-201 -102
+						c9 7 23 10 32 7 15 -6 14 -9 -6 -31 -13 -14 -28 -25 -35 -25 -19 0 -118 107
+						-110 120 5 8 23 -3 56 -36 41 -40 50 -45 63 -35z m208 34 l48 -47 49 48 c33
+						32 51 44 56 36 8 -13 -91 -120 -110 -120 -18 0 -118 107 -111 119 11 17 17 14
+						68 -36z m-77 -13 c-5 -8 -11 -8 -17 -2 -6 6 -7 16 -3 22 5 8 11 8 17 2 6 -6 7
+						-16 3 -22z m39 -18 c3 -5 -17 -31 -44 -57 -47 -46 -49 -50 -33 -67 20 -22 31
+						-23 55 -1 17 15 17 17 1 35 -13 14 -14 21 -5 30 10 10 18 6 39 -15 l27 -27
+						-44 -45 -44 -45 -43 42 -43 42 57 58 c58 59 68 65 77 50z"/>
+						</g>
+					</svg>
+				</ion-avatar>-->
+				<ion-label>
+					<h6 [style.color]="newrelease.colorCode" [innerHTML]="newrelease.PoemName"></h6>
+					<p [innerHTML]="newrelease.PoemText"></p>
+				</ion-label>
+			</ion-item>			
+			<!--<ion-item class="ion-text-center btns-sec" *ngIf="resultDataNewRelease.length > 0">
+				<ion-button class="more-btn">see more</ion-button>
+			</ion-item>-->
+		</ion-list>
+		<ion-list class="list-boxes-main">
+			<ion-list-header><ion-label>Trending Now</ion-label></ion-list-header>
+			<p class="item-box-main no-records" *ngIf="resultDataTrendingNow.length == 0">No records available</p>
+			<ion-item class="item-box-main" [style.color]="trending.colorCode" *ngFor="let trending of resultDataTrendingNow;let t=index;" (click)="getPoemsDetail(trending.id)">
+				<!--<ion-avatar>
+					<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="62.000000pt" height="62.000000pt" viewBox="0 0 62.000000 62.000000" preserveAspectRatio="xMidYMid meet">
+						<g transform="translate(0.000000,62.000000) scale(0.100000,-0.100000)"
+						fill="#000000" [style.fill]="trending.colorCode" stroke="none">
+						<path d="M250 565 l-54 -55 33 -34 c23 -23 29 -36 21 -41 -7 -4 -25 5 -43 24
+						l-32 31 -87 -87 -88 -88 87 -87 87 -88 32 31 c45 44 66 28 23 -17 l-33 -34 55
+						-55 54 -55 55 55 54 55 -33 34 c-43 45 -22 61 23 17 l32 -31 87 88 87 87 -88
+						88 -87 87 -32 -31 c-18 -19 -36 -28 -43 -24 -8 5 -2 18 21 41 l33 34 -55 55
+						-54 55 -55 -55z m105 -15 l39 -40 -59 -60 c-46 -47 -62 -57 -72 -48 -11 9 -4
+						21 37 63 l51 51 -21 19 c-20 18 -21 18 -42 -3 -18 -18 -19 -23 -8 -37 10 -12
+						10 -19 1 -28 -9 -9 -18 -5 -38 16 l-27 27 39 40 c21 22 44 40 50 40 6 0 29
+						-18 50 -40z m-115 -145 c42 -43 52 -57 42 -67 -10 -10 -22 -2 -60 35 l-47 47
+						-48 -47 c-37 -37 -49 -45 -59 -35 -10 10 -1 24 42 67 30 30 59 55 65 55 6 0
+						35 -25 65 -55z m259 1 c33 -33 51 -59 46 -66 -5 -8 -23 4 -56 36 -47 47 -49
+						47 -68 29 -19 -16 -21 -16 -27 -1 -7 18 21 56 40 56 7 0 36 -24 65 -54z m-102
+						-28 c29 -29 53 -57 53 -63 0 -19 -47 -58 -55 -45 -4 6 -1 18 6 26 10 13 4 23
+						-36 64 -26 26 -44 53 -41 59 11 17 17 14 73 -41z m-235 -31 l-32 -33 31 -31
+						c19 -18 28 -36 24 -43 -5 -8 -21 2 -51 31 l-44 43 42 43 c28 28 45 40 52 33 7
+						-7 -1 -21 -22 -43z m153 23 c-5 -8 -11 -8 -17 -2 -6 6 -7 16 -3 22 5 8 11 8
+						17 2 6 -6 7 -16 3 -22z m163 -97 c-28 -28 -45 -40 -52 -33 -7 7 1 21 22 43
+						l32 33 -31 31 c-19 18 -28 36 -24 43 5 8 21 -2 51 -31 l44 -43 -42 -43z m-263
+						58 c-14 -14 -10 -20 32 -63 37 -38 45 -50 35 -60 -10 -10 -24 0 -67 42 -30 30
+						-55 59 -55 64 0 5 10 20 22 33 17 18 24 20 35 11 12 -10 12 -14 -2 -27z m139
+						21 c3 -5 -15 -28 -39 -52 -38 -37 -45 -41 -51 -26 -5 12 4 28 27 52 32 34 53
+						42 63 26z m-99 -31 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0 11 -4 15 -9z
+						m130 0 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0 11 -4 15 -9z m-201 -102
+						c9 7 23 10 32 7 15 -6 14 -9 -6 -31 -13 -14 -28 -25 -35 -25 -19 0 -118 107
+						-110 120 5 8 23 -3 56 -36 41 -40 50 -45 63 -35z m208 34 l48 -47 49 48 c33
+						32 51 44 56 36 8 -13 -91 -120 -110 -120 -18 0 -118 107 -111 119 11 17 17 14
+						68 -36z m-77 -13 c-5 -8 -11 -8 -17 -2 -6 6 -7 16 -3 22 5 8 11 8 17 2 6 -6 7
+						-16 3 -22z m39 -18 c3 -5 -17 -31 -44 -57 -47 -46 -49 -50 -33 -67 20 -22 31
+						-23 55 -1 17 15 17 17 1 35 -13 14 -14 21 -5 30 10 10 18 6 39 -15 l27 -27
+						-44 -45 -44 -45 -43 42 -43 42 57 58 c58 59 68 65 77 50z"/>
+						</g>
+					</svg>
+				</ion-avatar>-->
+				<ion-label>
+					<h6 [style.color]="trending.colorCode" [innerHTML]="trending.PoemName">Headline Goes Here</h6>
+					<p [innerHTML]="trending.PoemText"></p>
+				</ion-label>
+			</ion-item>			
+			<!--<ion-item class="ion-text-center btns-sec" *ngIf="resultDataTrendingNow.length > 0">
+				<ion-button class="more-btn">see more</ion-button>
+			</ion-item>-->
+		</ion-list>
+		<ion-list class="list-boxes-main">
+			<ion-list-header><ion-label>Recently Viewed</ion-label></ion-list-header>
+			<p class="item-box-main no-records" *ngIf="resultDataRecentlyViewed.length == 0">No records available</p>
+			<ion-item class="item-box-main" *ngFor="let recent of resultDataRecentlyViewed;let r=index;" (click)="getPoemsDetail(recent.id)">
+				<!--<ion-avatar>
+					<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="62.000000pt" height="62.000000pt" viewBox="0 0 62.000000 62.000000" preserveAspectRatio="xMidYMid meet">
+						<g transform="translate(0.000000,62.000000) scale(0.100000,-0.100000)"
+						fill="#000000" [style.fill]="recent.colorCode" stroke="none">
+						<path d="M250 565 l-54 -55 33 -34 c23 -23 29 -36 21 -41 -7 -4 -25 5 -43 24
+						l-32 31 -87 -87 -88 -88 87 -87 87 -88 32 31 c45 44 66 28 23 -17 l-33 -34 55
+						-55 54 -55 55 55 54 55 -33 34 c-43 45 -22 61 23 17 l32 -31 87 88 87 87 -88
+						88 -87 87 -32 -31 c-18 -19 -36 -28 -43 -24 -8 5 -2 18 21 41 l33 34 -55 55
+						-54 55 -55 -55z m105 -15 l39 -40 -59 -60 c-46 -47 -62 -57 -72 -48 -11 9 -4
+						21 37 63 l51 51 -21 19 c-20 18 -21 18 -42 -3 -18 -18 -19 -23 -8 -37 10 -12
+						10 -19 1 -28 -9 -9 -18 -5 -38 16 l-27 27 39 40 c21 22 44 40 50 40 6 0 29
+						-18 50 -40z m-115 -145 c42 -43 52 -57 42 -67 -10 -10 -22 -2 -60 35 l-47 47
+						-48 -47 c-37 -37 -49 -45 -59 -35 -10 10 -1 24 42 67 30 30 59 55 65 55 6 0
+						35 -25 65 -55z m259 1 c33 -33 51 -59 46 -66 -5 -8 -23 4 -56 36 -47 47 -49
+						47 -68 29 -19 -16 -21 -16 -27 -1 -7 18 21 56 40 56 7 0 36 -24 65 -54z m-102
+						-28 c29 -29 53 -57 53 -63 0 -19 -47 -58 -55 -45 -4 6 -1 18 6 26 10 13 4 23
+						-36 64 -26 26 -44 53 -41 59 11 17 17 14 73 -41z m-235 -31 l-32 -33 31 -31
+						c19 -18 28 -36 24 -43 -5 -8 -21 2 -51 31 l-44 43 42 43 c28 28 45 40 52 33 7
+						-7 -1 -21 -22 -43z m153 23 c-5 -8 -11 -8 -17 -2 -6 6 -7 16 -3 22 5 8 11 8
+						17 2 6 -6 7 -16 3 -22z m163 -97 c-28 -28 -45 -40 -52 -33 -7 7 1 21 22 43
+						l32 33 -31 31 c-19 18 -28 36 -24 43 5 8 21 -2 51 -31 l44 -43 -42 -43z m-263
+						58 c-14 -14 -10 -20 32 -63 37 -38 45 -50 35 -60 -10 -10 -24 0 -67 42 -30 30
+						-55 59 -55 64 0 5 10 20 22 33 17 18 24 20 35 11 12 -10 12 -14 -2 -27z m139
+						21 c3 -5 -15 -28 -39 -52 -38 -37 -45 -41 -51 -26 -5 12 4 28 27 52 32 34 53
+						42 63 26z m-99 -31 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0 11 -4 15 -9z
+						m130 0 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10 25 5 0 11 -4 15 -9z m-201 -102
+						c9 7 23 10 32 7 15 -6 14 -9 -6 -31 -13 -14 -28 -25 -35 -25 -19 0 -118 107
+						-110 120 5 8 23 -3 56 -36 41 -40 50 -45 63 -35z m208 34 l48 -47 49 48 c33
+						32 51 44 56 36 8 -13 -91 -120 -110 -120 -18 0 -118 107 -111 119 11 17 17 14
+						68 -36z m-77 -13 c-5 -8 -11 -8 -17 -2 -6 6 -7 16 -3 22 5 8 11 8 17 2 6 -6 7
+						-16 3 -22z m39 -18 c3 -5 -17 -31 -44 -57 -47 -46 -49 -50 -33 -67 20 -22 31
+						-23 55 -1 17 15 17 17 1 35 -13 14 -14 21 -5 30 10 10 18 6 39 -15 l27 -27
+						-44 -45 -44 -45 -43 42 -43 42 57 58 c58 59 68 65 77 50z"/>
+						</g>
+					</svg>
+				</ion-avatar>-->
+				<ion-label>
+					<h6 [style.color]="recent.colorCode" [innerHTML]="recent.PoemName">Headline Goes Here</h6>
+					<p [innerHTML]="recent.PoemText"></p>
+				</ion-label>
+			</ion-item>			
+			<!--<ion-item class="ion-text-center btns-sec" *ngIf="resultDataRecentlyViewed.length > 0">
+				<ion-button class="more-btn">see more</ion-button>
+			</ion-item>-->
+		</ion-list>
+	</div>
+	<!--BEFORE::STARTS-->
+	<!--<ion-header no-border class="ion-no-border">
+		<ion-toolbar class="src-box">
+			<img src="../assets/images/src-icon1.png">
+			<ion-searchbar placeholder="Search Now"></ion-searchbar>
+		</ion-toolbar>
+	</ion-header>
+	<div class="mainContent">
+		<div class="update-filter-main">
+			<div class="update-sec">
+				<img src="../assets/images/sort-icon1.png">
+				<h6>Recently updated</h6>
+			</div>
+			<div class="filter-sec">
+				<img class="grid-icon1" src="../../assets/images/grid-icon1.png" (click)="showGridView()">
+        		<img class="list-icon1" src="../../assets/images/list-icon1.png" (click)="showListView()">
+			</div>
+		</div>
+		<ion-row class="list-boxes-main" [ngClass]="{'grid-view' : show_in_view == 'grid'}">
+			<ion-col class="item-box-main clr-red" (click)="showSubjectOccasionDetail()">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<div class="nm-icon-list">
+						<div class="nm-icon-item">
+							<img src="../assets/images/microphone-icon1.png">
+							<p>Mir Hasan Mir</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/language-icon1.png">
+							<p>Urdu</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p>Rehan</p>
+						</div>
+					</div>
+				</ion-label>
+			</ion-col>
+			<ion-col class="item-box-main clr-green" (click)="showSubjectOccasionDetail()">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<div class="nm-icon-list">
+						<div class="nm-icon-item">
+							<img src="../assets/images/microphone-icon1.png">
+							<p>Mir Hasan Mir</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/language-icon1.png">
+							<p>Urdu</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p>Rehan</p>
+						</div>
+					</div>
+				</ion-label>
+			</ion-col>
+			<ion-col class="item-box-main clr-red" (click)="showSubjectOccasionDetail()">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<div class="nm-icon-list">
+						<div class="nm-icon-item">
+							<img src="../assets/images/microphone-icon1.png">
+							<p>Mir Hasan Mir</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/language-icon1.png">
+							<p>Urdu</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p>Rehan</p>
+						</div>
+					</div>
+				</ion-label>
+			</ion-col>
+			<ion-col class="item-box-main clr-green" (click)="showSubjectOccasionDetail()">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<div class="nm-icon-list">
+						<div class="nm-icon-item">
+							<img src="../assets/images/microphone-icon1.png">
+							<p>Mir Hasan Mir</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/language-icon1.png">
+							<p>Urdu</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p>Rehan</p>
+						</div>
+					</div>
+				</ion-label>
+			</ion-col>
+			<ion-col class="item-box-main clr-red" (click)="showSubjectOccasionDetail()">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<div class="nm-icon-list">
+						<div class="nm-icon-item">
+							<img src="../assets/images/microphone-icon1.png">
+							<p>Mir Hasan Mir</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/language-icon1.png">
+							<p>Urdu</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p>Rehan</p>
+						</div>
+					</div>
+				</ion-label>
+			</ion-col>
+			<ion-col class="item-box-main clr-green" (click)="showSubjectOccasionDetail()">
+				<ion-avatar>
+					<img src="../assets/images/icon1.png">
+				</ion-avatar>
+				<ion-label>
+					<h6>Headline Goes Here</h6>
+					<div class="nm-icon-list">
+						<div class="nm-icon-item">
+							<img src="../assets/images/microphone-icon1.png">
+							<p>Mir Hasan Mir</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/language-icon1.png">
+							<p>Urdu</p>
+						</div>
+						<div class="nm-icon-item">
+							<img src="../assets/images/pen-icon1.png">
+							<p>Rehan</p>
+						</div>
+					</div>
+				</ion-label>
+			</ion-col>
+		</ion-row>
+	</div>-->
+	<!--BEFORE::ENDS-->
+</ion-content>

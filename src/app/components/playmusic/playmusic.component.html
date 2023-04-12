@@ -1,0 +1,12 @@
+<div class="play-button">
+  <ion-button [ngSwitch]="status$ | async" fill="clear" size="small" (click)="play.emit(qbyte); $event.stopPropagation(); setHasPlayedTrue();">
+    <ion-icon *ngSwitchCase="mediaStatus.RUNNING" slot="icon-only" src="assets/custom-icons/button-pause.svg"></ion-icon>
+    <ion-icon *ngSwitchDefault slot="icon-only" src="assets/custom-icons/button-play.svg"></ion-icon>
+  </ion-button>
+  <!--STOP BUTTON-->
+  <ion-button [ngSwitch]="status$ | async" fill="clear" size="small" (click)="StopMedia(qbyte);">
+    <!--<ion-icon *ngSwitchCase="mediaStatus.RUNNING" name="stop-circle"></ion-icon>-->
+    <ion-icon *ngSwitchCase="mediaStatus.RUNNING" slot="icon-only" src="assets/custom-icons/button-stop.svg"></ion-icon>
+  </ion-button>  
+  <!--STOP BUTTON-->  
+</div>

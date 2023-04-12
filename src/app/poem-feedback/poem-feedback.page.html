@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+	<ion-toolbar class="header-top-box">
+		<ion-buttons slot="start">
+			<ion-icon name="close" (click)="dismissFilterModal()"></ion-icon>
+		</ion-buttons>
+		<ion-title class="ion-text-center">Feedback</ion-title>		
+	</ion-toolbar>  	
+</ion-header>
+
+<ion-content>
+	<div class="mainContent has-not-mp3">
+		<div class="pg-title-main">
+			<h2 [innerHTML]="resultPoemsDetail.PoemName"></h2>			
+		</div>
+		<p class="no-records" *ngIf="user_id == null">You must be logged in.</p>		
+		<div class="list-of-lines" *ngIf="poemsLine.length > 0">
+			<div class="item-of-line" *ngFor="let line of poemsLine;let l = index;">
+				<div class="lines-sec">
+					<h6 [innerHTML]="line.PoemText" [style.color]="line.colorCode"></h6>
+					<div class="trans-lines" *ngIf="line.TranslatedText!=''">
+						<form #suggestionForm="ngForm" (ngSubmit)="SaveSuggestion(suggestionForm)">
+							<ion-input type="hidden" [(ngModel)]="ngFormSuggestion[l].array_index" name="array_index"></ion-input>
+							<ion-input type="hidden" [(ngModel)]="ngFormSuggestion[l].row_id" name="row_id"></ion-input>
+							<ion-input type="hidden" [(ngModel)]="ngFormSuggestion[l].poem_id" name="poem_id"></ion-input>
+							<ckeditor [editor]="Editor" [config]="{ toolbar: [ 'clipboard', '|', 'undo', '|', 'bold', 'italic' ] }" [ngClass]="{'suggested-text-updated' : ngFormSuggestion[l].is_suggested_text_updated == true}" [(ngModel)]="ngFormSuggestion[l].suggested_text" name="suggested_text"></ckeditor>
+							<!--<ion-textarea [ngClass]="{'suggested-text-updated' : ngFormSuggestion[l].is_suggested_text_updated == true}" [(ngModel)]="ngFormSuggestion[l].suggested_text" name="suggested_text"></ion-textarea>-->
+							<ion-button type="submit" [disabled]="ngFormSuggestion[l].is_suggested_text_updated || user_id == null">Save Suggestion</ion-button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</ion-content>
