@@ -64,7 +64,10 @@
 				</ion-item>
 			</ion-list>-->
 			<!--WORKING::WITH SEARCHED KEYWORDS ENDS-->
-			<ion-searchbar placeholder="Search by poem, poet, reciter, language" showCancelButton="never" (ionFocus)="OpenAutoComplete()"></ion-searchbar>
+			<ion-item lines="none" no-padding class="search-bar" (click)="OpenAutoComplete()">
+				<ion-text text-wrap><p>Search by poem, poet, reciter, language</p></ion-text>
+			</ion-item>
+			<!--<ion-searchbar placeholder="Search by poem, poet, reciter, language" showCancelButton="never" (ionFocus)="OpenAutoComplete()"></ion-searchbar>-->
 		</ion-toolbar>
 	</ion-header>
   	<div class="mainContent" [ngClass]="{'space-on-top' : resultSearchResult.length > 0}">

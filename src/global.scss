@@ -226,6 +226,26 @@ app-home {
                 }
             }
         }
+        .search-bar{
+            height: 50px !important;
+            width: 100% !important;
+            background: #FFFFFF;            
+            border: 1px solid #000000;
+            border-radius: 30px;
+            display: flex;
+            ion-text{
+                p{
+                    color: #000;
+                    font-size: 15px;
+                    font-weight: normal;
+                    font-family: var(--font-Poppins-Medium) !important;
+                    padding-left: 14px;
+                    line-height: 15px;
+                    margin-top: 14px;
+                    
+                }
+            }
+		}
     }
 }
 

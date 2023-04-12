@@ -15,8 +15,10 @@ export class ClientService
 	//LIVE SITE URL:: https://app.thehaydariproject.com/
 	//DEV API URL:: https://haydari.ecnet.dev/api/
 	//DEV SITE URL:: https://haydari.ecnet.dev/	
-	public site_url: string ="https://haydari.ecnet.dev/";
-	public api_url: string = "https://haydari.ecnet.dev/api/";
+	//public site_url: string ="https://haydari.ecnet.dev/";//DEV
+	//public api_url: string = "https://haydari.ecnet.dev/api/";//DEV
+	public site_url: string ="https://app.thehaydariproject.com/";//LIVE
+	public api_url: string = "https://app.thehaydariproject.com/api/";//LIVE
 	public token: string;
 	public serverResponse: any=[];
 	private fooSubjectWhenlOGIN = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
