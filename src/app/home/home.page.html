@@ -8,12 +8,12 @@
 		<ion-title class="ion-text-center"></ion-title>
 		<ion-chip slot="end">
 			<ion-button class="translation-icon active">
-				<ion-icon name="wifi-outline"></ion-icon>
+				<ion-icon name="ellipse"></ion-icon>
 			</ion-button>
 		</ion-chip>
-		<ion-chip slot="end" (click)="showMyProfile()">
+		<ion-chip slot="end" (click)="showMyProfile()" class="profile">
 			<ion-img src="../assets/images/Profile-Icon.svg" *ngIf="WelcomeText == null"></ion-img>
-			<ion-text *ngIf="WelcomeText != null"><p>{{WelcomeText}}</p></ion-text>
+			<ion-text class="profileLetter" *ngIf="WelcomeText != null"><p>{{WelcomeText}}</p></ion-text>
 		</ion-chip>
 		<app-qbyte-card 			 
 		[qbyte]="resultPoemsDetail" 

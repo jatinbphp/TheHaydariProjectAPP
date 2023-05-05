@@ -20,6 +20,7 @@ export class AboutHaydariPage implements OnInit
   public resultPoemsDetail:any=[];//THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
   public qbytes$: Observable<Qbyte[]>;//THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
   public is_audio_played:boolean=false;//THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
+  public is_network_connected:boolean=false;
   constructor(public client: ClientService, public modalCtrl: ModalController, public inAppBrowser: InAppBrowser, private readonly mediaControllerService: MediaControlsService)
   { 
     //THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
@@ -33,6 +34,9 @@ export class AboutHaydariPage implements OnInit
     {
       this.WelcomeText = this.client.WelcomeText;
     });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+    this.client.getObservableWhenOnLine().subscribe((data) => {
+      this.is_network_connected = data.is_network_connected; 
+    });//THIS OBSERVABLE IS USED TO KNOW IF NETWORK CONNECTED THEN RELOAD THE HOME SCREEN
   }
 
   async ngOnInit()
@@ -56,6 +60,7 @@ export class AboutHaydariPage implements OnInit
 
   async ionViewWillEnter()
   {
+    this.is_network_connected=this.client.is_network_connected;
     //THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
     this.is_audio_played=(localStorage.getItem('is_audio_played')) ? Boolean(localStorage.getItem('is_audio_played')) : this.is_audio_played;
     let current_playing_audio : any = localStorage.getItem('current_playing_audio');

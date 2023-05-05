@@ -12,9 +12,9 @@
 			</ion-menu-button>
 		</ion-buttons>
 		<ion-title class="ion-text-center"></ion-title>
-		<ion-chip slot="end" (click)="showMyProfile()">
+		<ion-chip slot="end" (click)="showMyProfile()" class="profile">
 			<ion-img src="../assets/images/Profile-Icon.svg" *ngIf="WelcomeText == null"></ion-img>
-			<ion-text *ngIf="WelcomeText != null"><p>{{WelcomeText}}</p></ion-text>
+			<ion-text class="profileLetter" *ngIf="WelcomeText != null"><p>{{WelcomeText}}</p></ion-text>
 		</ion-chip>
 	</ion-toolbar>
 </ion-header>

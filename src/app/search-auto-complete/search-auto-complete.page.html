@@ -11,7 +11,7 @@
 <ion-content [fullscreen]="true">
   <div class="mainContent">
 	<div class="src-box">
-		<ion-searchbar placeholder="Search by poem, poet, reciter, language" [debounce]="1000" (ionChange)="SearchPoem($event)"></ion-searchbar>
+		<ion-searchbar #autofocus placeholder="Search by poem, poet, reciter, language" [debounce]="1000" (ionChange)="SearchPoem($event)"></ion-searchbar>
 	</div>
 	<ion-grid *ngIf="is_searched == true">
 		<ion-row *ngIf="resultData.length > 0" class="list-boxes-main" [ngClass]="{'grid-view' : show_in_view == 'grid'}">

@@ -1,20 +1,18 @@
-<ion-header [translucent]="true">
-  <!-- <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>      
-    </ion-buttons>
-    <ion-title>Wishlist</ion-title>    
-  </ion-toolbar> -->
+<ion-header [translucent]="true">  
   	<ion-toolbar class="header-top-box">
 		<ion-buttons slot="start">
 			<ion-menu-button>
 				<ion-icon name="menu"></ion-icon>
 			</ion-menu-button>
 		</ion-buttons>
-		<!-- <ion-title class="ion-text-center">About The Project</ion-title> -->
-		<ion-chip slot="end" (click)="showMyProfile()">
-			<ion-img src="../assets/images/Profile-Icon.svg" *ngIf="WelcomeText == null"></ion-img>
-      <ion-text *ngIf="WelcomeText != null"><p>{{WelcomeText}}</p></ion-text>
+    <ion-chip slot="end">
+			<ion-button class="translation-icon" [ngClass]="{'active' : is_network_connected==true,'inactive' : is_network_connected==false}">
+				<ion-icon name="ellipse"></ion-icon>
+			</ion-button>
+		</ion-chip>
+		<ion-chip slot="end" (click)="showMyProfile()" class="profile" *ngIf="is_network_connected==true">
+			<ion-img src="../assets/images/Profile-Icon.svg" *ngIf="WelcomeText == null"></ion-img>      
+      <ion-text class="profileLetter" *ngIf="WelcomeText != null"><p>{{WelcomeText}}</p></ion-text>
 		</ion-chip>
     <app-qbyte-card 			 
 		[qbyte]="resultPoemsDetail" 

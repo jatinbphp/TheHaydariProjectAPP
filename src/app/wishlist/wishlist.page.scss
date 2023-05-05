@@ -56,11 +56,25 @@ ion-header {
 	    	padding: 0px;
 	    	margin: 0px;
 			ion-button{
+	    		&.translation-icon {
+					width: 15px;
+					height: 15px;
+					opacity: 0.8;
+					margin-right: 6px;
+				}
 	    		&.active {
-	    			opacity: 0.8;
+					--color: #98a886;
+					// opacity: 0.8;
+					ion-icon {
+						color: #98a886;
+					}
 	    		}
 	    		&.inactive {
-	    			opacity: 0.4;
+					--color: #eb445a;
+					// opacity: 0.4;
+					ion-icon {
+						color: #eb445a;
+					}
 	    		}
 	    	}
 			ion-img {

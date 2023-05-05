@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoadingController, ModalController, IonSearchbar } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { OfflineService } from '../providers/offline.service';
 import { NavigationExtras } from "@angular/router";
@@ -11,8 +11,8 @@ import { NavigationExtras } from "@angular/router";
 })
 
 export class SearchAutoCompletePage implements OnInit 
-{  
-  
+{ 
+  @ViewChild('autofocus', { static: false }) searchbar: IonSearchbar;
   public resultData:any=[];
   public resultDataOFFLine:any=[];
   public resultDataOnSearch=[];
@@ -24,6 +24,7 @@ export class SearchAutoCompletePage implements OnInit
 
   async ngOnInit()
   {
+    setTimeout(() => this.searchbar.setFocus(), 500);//AutoFocus
     this.resultDataOFFLine=[];
     this.resultData=[];
     this.resultDataOnSearch=[];

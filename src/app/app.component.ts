@@ -39,7 +39,7 @@ export class AppComponent
   public appPages:any=[];  
   public token: string;
   public is_user_login: boolean = false;
-  public is_network_connected: boolean = true;//MAKE FALSE WHEN LIVE
+  public is_network_connected: boolean = false;//MAKE FALSE WHEN LIVE
   public available_network_type:any='';
 
   //SETUP PUSH
@@ -64,7 +64,7 @@ export class AppComponent
   {
     this.platform.ready().then(async () => 
     {
-      //this.initializeNetworkEvents();//UNCOMMENT WHEN LIVE
+      this.initializeNetworkEvents();//UNCOMMENT WHEN LIVE
       let status =  this.network.type !== 'none' ? ConnectionStatus.Online : ConnectionStatus.Offline;
       this.status.next(status);
 
