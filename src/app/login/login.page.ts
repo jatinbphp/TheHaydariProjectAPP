@@ -95,10 +95,7 @@ export class LoginPage implements OnInit
 		await this.client.makeMeLoggedin(data).then(result => 
 		{	
 			loading.dismiss();//DISMISS LOADER			
-			this.resultData=result;
-			this.client.publishSomeDataWhenLogin({
-				is_user_login: true
-			});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+			this.resultData=result;			
 			if(this.resultData.status==true)
 			{
 				localStorage.setItem('token',this.resultData.token);
@@ -114,7 +111,9 @@ export class LoginPage implements OnInit
 				this.client.showMessage(this.resultData.message);
 			}
 			console.log(this.resultData);
-						
+			this.client.publishSomeDataWhenLogin({
+				is_user_login: true
+			});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN			
 		},
 		error => 
 		{
@@ -184,10 +183,7 @@ export class LoginPage implements OnInit
 			this.client.GoogleLoginORSignup(data).then(async (result) => 
 			{	
 				loading.dismiss();//DISMISS LOADER			
-				this.resultDataSocialLoginOrSignup=result;				
-				this.client.publishSomeDataWhenLogin({
-					is_user_login: true
-				});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+				this.resultDataSocialLoginOrSignup=result;								
 				if(this.resultDataSocialLoginOrSignup.status==true)
 				{
 					//SETUP PUSH
@@ -219,7 +215,10 @@ export class LoginPage implements OnInit
 					localStorage.setItem('email',this.resultDataSocialLoginOrSignup['data'].email);
 					localStorage.setItem('username',this.resultDataSocialLoginOrSignup['data'].username);
 					this.client.router.navigate(['/tabs/home']);
-				}			
+				}
+				this.client.publishSomeDataWhenLogin({
+					is_user_login: true
+				});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN			
 			},
 			error => 
 			{
@@ -271,10 +270,7 @@ export class LoginPage implements OnInit
 				this.client.FaceBookLoginORSignup(data).then(async (result) => 
 				{	
 					loading.dismiss();//DISMISS LOADER			
-					this.resultDataSocialLoginOrSignup=result;
-					this.client.publishSomeDataWhenLogin({
-						is_user_login: true
-					});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+					this.resultDataSocialLoginOrSignup=result;					
 					if(this.resultDataSocialLoginOrSignup.status==true)
 					{
 						//SETUP PUSH
@@ -307,7 +303,10 @@ export class LoginPage implements OnInit
 						localStorage.setItem('email',this.resultDataSocialLoginOrSignup['data'].email);
 						localStorage.setItem('username',this.resultDataSocialLoginOrSignup['data'].username);
 						this.client.router.navigate(['/tabs/home']);
-					}			
+					}	
+					this.client.publishSomeDataWhenLogin({
+						is_user_login: true
+					});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN		
 				},
 				error => 
 				{
@@ -361,10 +360,7 @@ export class LoginPage implements OnInit
 
 			await this.client.AppleLoginORSignup(data).then(async (result) => 
 			{	
-				this.resultDataSocialLoginOrSignup=result;
-				this.client.publishSomeDataWhenLogin({
-					is_user_login: true
-				});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+				this.resultDataSocialLoginOrSignup=result;				
 				if(this.resultDataSocialLoginOrSignup.status==true)
 				{
 					//SETUP PUSH
@@ -397,7 +393,10 @@ export class LoginPage implements OnInit
 					localStorage.setItem('email',this.resultDataSocialLoginOrSignup['data'].email);
 					localStorage.setItem('username',this.resultDataSocialLoginOrSignup['data'].username);
 					this.client.router.navigate(['/tabs/home']);
-				}			
+				}
+				this.client.publishSomeDataWhenLogin({
+					is_user_login: true
+				});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN			
 			},
 			error => 
 			{

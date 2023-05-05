@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';//THIS PORTION IS USED FOR PLAYING AUDIO THROU
 
 export class AboutHaydariPage implements OnInit 
 {
+  public WelcomeText: any = null;
   public resultContributionLinks:any=[];
   public resultPoemsDetail:any=[];//THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
   public qbytes$: Observable<Qbyte[]>;//THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
@@ -28,10 +29,20 @@ export class AboutHaydariPage implements OnInit
       this.is_audio_played = data.is_audio_played; 
     });//THIS OBSERVABLE IS USED TO KNOW IF AUDIO PLAYED FROM PLAY MUSIC COMPONENT
     //THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
+    this.client.getObservableWhenLogin().subscribe((data) => 
+    {
+      this.WelcomeText = this.client.WelcomeText;
+    });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
   }
 
   async ngOnInit()
   { 
+    this.WelcomeText = (localStorage.getItem("firstname") != null && localStorage.getItem("firstname") != undefined) ? localStorage.getItem("firstname") : null;
+		if(this.WelcomeText!=null)
+    {
+      this.WelcomeText = this.WelcomeText.substring(0,1);
+    }
+    
     await this.client.getContributionLinks().then(result => 
     {	
       this.resultContributionLinks = result;

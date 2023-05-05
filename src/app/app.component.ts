@@ -25,6 +25,7 @@ export enum ConnectionStatus
 })
 export class AppComponent 
 {
+  public WelcomeText: any = null;
   public queryString: any=[];
   public resultDataSlug: any=[];
   public resultContributionLinks:any=[];
@@ -38,7 +39,7 @@ export class AppComponent
   public appPages:any=[];  
   public token: string;
   public is_user_login: boolean = false;
-  public is_network_connected: boolean = false;//MAKE FALSE WHEN LIVE
+  public is_network_connected: boolean = true;//MAKE FALSE WHEN LIVE
   public available_network_type:any='';
 
   //SETUP PUSH
@@ -63,7 +64,7 @@ export class AppComponent
   {
     this.platform.ready().then(async () => 
     {
-      this.initializeNetworkEvents();//UNCOMMENT WHEN LIVE
+      //this.initializeNetworkEvents();//UNCOMMENT WHEN LIVE
       let status =  this.network.type !== 'none' ? ConnectionStatus.Online : ConnectionStatus.Offline;
       this.status.next(status);
 
@@ -112,11 +113,6 @@ export class AppComponent
       console.log('Handler was called!');
     });//PREVENT BACK BUTTON    
     */
-
-    this.client.getObservableWhenLogin().subscribe((data) => {
-      this.is_user_login = data.is_user_login;      
-      console.log('Data received', data);
-    });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
 
     this.client.getObservableWhenOnLine().subscribe((data) => {
       this.is_network_connected = data.is_network_connected; 
@@ -542,6 +538,7 @@ export class AppComponent
     this.client.publishSomeDataWhenLogin({
       is_user_login: false
     });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+    this.client.WelcomeText = null;
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('firstname');

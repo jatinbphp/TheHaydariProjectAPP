@@ -13,12 +13,23 @@ import { ClientService } from '../providers/client.service';
 
 export class TypeViewsPage implements OnInit 
 {
-
+  public WelcomeText: any = null;
   constructor(public client: ClientService, private router: Router, public fb: FormBuilder, public loadingCtrl: LoadingController, public modalCtrl: ModalController)
-  { }
+  { 
+    this.client.getObservableWhenLogin().subscribe((data) => 
+    {
+      this.WelcomeText = this.client.WelcomeText;
+    });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+  }
 
   ngOnInit()
-  { }
+  { 
+    this.WelcomeText = (localStorage.getItem("firstname") != null && localStorage.getItem("firstname") != undefined) ? localStorage.getItem("firstname") : null;
+		if(this.WelcomeText!=null)
+    {
+      this.WelcomeText = this.WelcomeText.substring(0,1);
+    }
+  }
 
   home() 
   {

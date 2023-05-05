@@ -27,8 +27,22 @@ export class ClientService
 	private fooSubjectWhenOnLine = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IF NETWORK CONNECTED THEN RELOAD THE HOME SCREEN
 	private fooSubjectWhenAudioPlayed = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IF AUDIO PLAYED FROM PLAY MUSIC COMPONENT
 	public is_network_connected:boolean=true;
+	public WelcomeText:any=null;
 	constructor(public http: HttpClient, private alertCtrl: AlertController, public router: Router, private socialSharing: SocialSharing) 
-	{ }
+	{ 
+		this.getObservableWhenLogin().subscribe((data) => 
+		{
+			if(data.is_user_login == true)
+			{
+				this.WelcomeText = (localStorage.getItem("firstname") != null && localStorage.getItem("firstname") != undefined) ? localStorage.getItem("firstname") : null;
+				this.WelcomeText = this.WelcomeText.substring(0,1);
+			}	
+			else 
+			{
+				this.WelcomeText = null;
+			}		
+		});//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+	}
 
 	publishSomeDataWhenLogin(data: any) {
         this.fooSubjectWhenlOGIN.next(data);

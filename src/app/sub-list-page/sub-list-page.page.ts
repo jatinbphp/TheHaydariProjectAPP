@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';//THIS PORTION IS USED FOR PLAYING AUDIO THROU
 export class SubListPagePage implements OnInit 
 {
   @ViewChild('ionContent') ionContent: IonContent;
+  public WelcomeText: any = null;
   public MP3Link:string='';
   public queryString: any=[];
   public queryStringData: any=[];
@@ -124,6 +125,11 @@ export class SubListPagePage implements OnInit
   public autocomplete_options:any=[];//AUTOCOMPLETE RELETED
   constructor(public keyboard:Keyboard, public fb: FormBuilder, public client: ClientService, public loadingCtrl: LoadingController, public modalCtrl: ModalController, private route: ActivatedRoute, private router: Router, private readonly mediaControllerService: MediaControlsService)
   { 
+    this.client.getObservableWhenLogin().subscribe((data) => 
+    {
+      this.WelcomeText = this.client.WelcomeText;
+    });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+
     //THIS PORTION IS USED FOR PLAYING AUDIO THROUGH THE APP
     this.client.getObservableWhenAudioPlayed().subscribe((data) => {
       this.resultPoemsDetail = data.music_object; 
@@ -215,6 +221,11 @@ export class SubListPagePage implements OnInit
 
   ngOnInit()
   { 
+    this.WelcomeText = (localStorage.getItem("firstname") != null && localStorage.getItem("firstname") != undefined) ? localStorage.getItem("firstname") : null;
+		if(this.WelcomeText!=null)
+    {
+      this.WelcomeText = this.WelcomeText.substring(0,1);
+    }
     this.shoeHomeContent();
   }
   

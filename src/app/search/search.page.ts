@@ -14,6 +14,7 @@ import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 
 export class SearchPage 
 {
+  public WelcomeText: any = null;
   public show_in_view: any = 'list';
   public resultData:any=[];
   public resultDataNewRelease:any=[];
@@ -23,10 +24,21 @@ export class SearchPage
   public queryString: any=[];  
   public searched_text:string='';
   constructor(public client: ClientService, public modalCtrl: ModalController, public fb: FormBuilder, public loadingCtrl: LoadingController, private route: ActivatedRoute, private router: Router) 
-  {}
+  {
+    this.client.getObservableWhenLogin().subscribe((data) => 
+    {
+      this.WelcomeText = this.client.WelcomeText;
+    });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+  }
   
   ngOnInit()
-  {}
+  {
+    this.WelcomeText = (localStorage.getItem("firstname") != null && localStorage.getItem("firstname") != undefined) ? localStorage.getItem("firstname") : null;
+		if(this.WelcomeText!=null)
+    {
+      this.WelcomeText = this.WelcomeText.substring(0,1);
+    }
+  }
 
   async ionViewWillEnter() 
 	{

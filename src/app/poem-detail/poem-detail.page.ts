@@ -22,6 +22,7 @@ import { MediaControlsService } from '../providers/media-controls.service';//THI
 
 export class PoemDetailPage 
 {
+  public WelcomeText: any = null;
   public user_id:any='';
   public poem_id:any='';
   public from_page:any='';
@@ -51,10 +52,21 @@ export class PoemDetailPage
   public show_hide_translation:boolean=true;
   public does_poem_has_translated_text:boolean=false;
   constructor(private platform: Platform, private filePath: FilePath, private file: File, private transfer: FileTransfer, private inAppBrowser: InAppBrowser, public offline: OfflineService, public client: ClientService, private media: Media, public fb: FormBuilder, public loadingCtrl: LoadingController, public modalCtrl: ModalController, private route: ActivatedRoute, private router: Router, public actionSheetCtrl: ActionSheetController, private androidPermissions: AndroidPermissions, private readonly mediaControllerService: MediaControlsService)
-  {}
+  {
+    this.client.getObservableWhenLogin().subscribe((data) => 
+    {
+      this.WelcomeText = this.client.WelcomeText;
+    });//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
+  }
 
   async ngOnInit()
-  {}
+  {
+    this.WelcomeText = (localStorage.getItem("firstname") != null && localStorage.getItem("firstname") != undefined) ? localStorage.getItem("firstname") : null;
+		if(this.WelcomeText!=null)
+    {
+      this.WelcomeText = this.WelcomeText.substring(0,1);
+    }
+  }
 
   async ionViewWillEnter()
   {

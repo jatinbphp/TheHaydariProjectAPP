@@ -15,7 +15,8 @@
 			</ion-button>
 		</ion-chip>
 		<ion-chip slot="end" (click)="showMyProfile()">
-			<ion-img src="../assets/images/Profile-Icon.svg"></ion-img>
+			<ion-img src="../assets/images/Profile-Icon.svg" *ngIf="WelcomeText == null"></ion-img>
+			<ion-text *ngIf="WelcomeText != null">{{WelcomeText}}</ion-text>
 		</ion-chip>
 		<app-qbyte-card 			 
 		[qbyte]="resultPoemsDetail" 
