@@ -233,6 +233,59 @@ export class OfflineService
     });
   }
 
+  getBookmarksWithSearch(query,data)
+  {
+    return new Promise((resolve, reject) => 
+    {
+      
+      this.storage.executeSql(query,[]).then((data) => 
+      {
+        let activityValues = [];
+        if (data.rows.length > 0) 
+        {
+          for(let i=0; i <data.rows.length; i++) 
+          {
+            let objPoems = {
+              Email:data.rows.item(i).Email,
+              Fullname:data.rows.item(i).Fullname,
+              LanguageID:data.rows.item(i).LanguageID,
+              LanguageName:data.rows.item(i).LanguageName,
+              MP3Link:data.rows.item(i).MP3Link,
+              PoemName:data.rows.item(i).PoemName,
+              PoemTypeID:data.rows.item(i).PoemTypeID,
+              PoemTypeName:data.rows.item(i).PoemTypeName,
+              PoetID:data.rows.item(i).PoetID,
+              PoetName:data.rows.item(i).PoetName,
+              ReciterID:data.rows.item(i).ReciterID,
+              ReciterName:data.rows.item(i).ReciterName,
+              SubjectID:data.rows.item(i).SubjectID,
+              SubjectName:data.rows.item(i).SubjectName,
+              TranslatedText:data.rows.item(i).TranslatedText,
+              UserID:data.rows.item(i).UserID,
+              YouTubeURL:data.rows.item(i).YouTubeURL,
+              addedBy:data.rows.item(i).addedBy,
+              bookmarkStatus:data.rows.item(i).bookmarkStatus,
+              colorCode:data.rows.item(i).colorCode,
+              createdAt:data.rows.item(i).createdAt,
+              id:data.rows.item(i).id,
+              isVerified:data.rows.item(i).isVerified,
+              poemsLine:data.rows.item(i).poemsLine,
+              FromTableNM:data.rows.item(i).FromTableNM,
+            }
+            activityValues.push(objPoems);
+          }
+        }
+        //alert(activityValues); // contains data
+        resolve(activityValues);
+      },(error) => 
+      {
+        console.log(error);
+        reject(error);
+      });
+      
+    })
+  }
+
   getData(query,data)
   {
     return new Promise((resolve, reject) => 

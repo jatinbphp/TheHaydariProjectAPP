@@ -206,22 +206,25 @@ ion-content {
 				}
 			}
 			.filter-sec {
-				width: 90px;
+				// width: 90px;
+				width: auto;
 				height: fit-content;
 				height: -webkit-fit-content;
 				height: -moz-fit-content;
 				height: -ms-fit-content;
 				height: -o-fit-content;
-			    background-color: rgba(255, 255, 255, 0.1);
+			    //background-color: rgba(255, 255, 255, 0.1);
+			    background-color: transparent;
 			    border-radius: 3px;
 			    text-align: center;
-			    padding: 6px 0px;
+			    padding: 6px 3px;
 			    display: flex;
-			    justify-content: space-evenly;
+			    //justify-content: space-evenly;
+			    justify-content: flex-end;
 				img {
 					max-width: 100%;
-					width: 26px;
-					height: auto;
+					width: auto;
+					height: 20px;
 					object-fit: contain;
 					margin: 0px 4px 0px;
 				}

@@ -80,6 +80,10 @@ const routes: Routes = [
   {
     path: 'search-auto-complete',
     loadChildren: () => import('./search-auto-complete/search-auto-complete.module').then( m => m.SearchAutoCompletePageModule)
+  },
+  {
+    path: 'search-filters-bookmarks',
+    loadChildren: () => import('./search-filters-bookmarks/search-filters-bookmarks.module').then( m => m.SearchFiltersBookmarksPageModule)
   }
   /*,
   {

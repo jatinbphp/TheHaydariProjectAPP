@@ -31,9 +31,12 @@
 		<div class="update-filter-main">
 			<div class="update-sec">
 				<h6>Number of Resuts : <strong>{{limitedResultDataBookMark.length}}</strong></h6>
+			</div>
+			<div class="filter-sec" (click)="OpenAdvanceFilter()">
+				<img class="grid-icon1" src="../../assets/images/Filter_Unselected-Icon.svg" *ngIf="is_searched_filters_applied == false">
+				<img class="grid-icon1" src="../../assets/images/Filter_Selected-Icon.svg" *ngIf="is_searched_filters_applied == true">
 			</div>			
-		</div>
-		<!--<p *ngIf="id == undefined" class="no-records">You must be <ion-router-link routerDirection="root" routerLink="/login" color="danger">login</ion-router-link> to see your bookmarks.</p>	-->
+		</div>		
 		<p class="no-records" *ngIf="limitedResultDataBookMark.length == 0 && id != undefined">No records available</p>
 		<ion-row *ngIf="limitedResultDataBookMark.length > 0" class="list-boxes-main" [ngClass]="{'grid-view' : show_in_view == 'grid'}">
 			<ion-col *ngFor="let poems of limitedResultDataBookMark; let p = index;" [ngClass]="{'clr-green' : p % 2 == 0}" class="item-box-main clr-red"><!--BEFORE::getPoemsDetail(poems.id)-->				

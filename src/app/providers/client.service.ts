@@ -24,6 +24,7 @@ export class ClientService
 	private fooSubjectWhenlOGIN = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS USER LOGGEDIN
 	private fooSubjectWhenPoemTypeClickedFromMenu = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IF POEM TYPE CLICKED FROM MENU
 	private fooSubjectWhenClearSearch = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS CLEAR SEARCH BUTTON CLICKED
+	private fooSubjectWhenClearBookmarkSearch = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS CLEAR SEARCH BUTTON CLICKED ON BOOKMARK
 	private fooSubjectWhenOnLine = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IF NETWORK CONNECTED THEN RELOAD THE HOME SCREEN
 	private fooSubjectWhenAudioPlayed = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IF AUDIO PLAYED FROM PLAY MUSIC COMPONENT
 	public is_network_connected:boolean=true;
@@ -69,6 +70,14 @@ export class ClientService
     getObservableWhenClearSearch(): Subject<any> {
         return this.fooSubjectWhenClearSearch;
 	}//THIS OBSERVABLE IS USED TO KNOW IS CLEAR SEARCH BUTTON CLICKED
+
+	publishSomeDataWhenClearSearchBookmark(data: any) {
+        this.fooSubjectWhenClearBookmarkSearch.next(data);
+    }//THIS OBSERVABLE IS USED TO KNOW IS CLEAR SEARCH BUTTON CLICKED ON BOOKMARK
+
+    getObservableWhenClearSearchBookmark(): Subject<any> {
+        return this.fooSubjectWhenClearBookmarkSearch;
+	}//THIS OBSERVABLE IS USED TO KNOW IS CLEAR SEARCH BUTTON CLICKED ON BOOKMARK
 
 	publishSomeDataWhenOnLine(data: any) {
         this.fooSubjectWhenOnLine.next(data);

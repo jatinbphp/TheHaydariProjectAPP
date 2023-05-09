@@ -23,8 +23,7 @@ export class SearchAutoCompletePage implements OnInit
   { }
 
   async ngOnInit()
-  {
-    setTimeout(() => this.searchbar.setFocus(), 500);//AutoFocus
+  {    
     this.resultDataOFFLine=[];
     this.resultData=[];
     this.resultDataOnSearch=[];
@@ -145,4 +144,8 @@ export class SearchAutoCompletePage implements OnInit
     this.modalCtrl.dismiss();
   }
   
+  ionViewDidEnter()
+  {
+    setTimeout(() => this.searchbar.setFocus(), 500);//AutoFocus
+  }
 }
