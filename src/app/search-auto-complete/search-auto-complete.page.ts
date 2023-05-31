@@ -18,7 +18,7 @@ export class SearchAutoCompletePage implements OnInit
   public resultDataOnSearch=[];
   public numberOfRecords:number=0;
   public queryString: any=[];
-  public is_searched:boolean = false;
+  //public is_searched:boolean = false;
   constructor(public client: ClientService, public offline: OfflineService, public loadingCtrl: LoadingController, public modalCtrl: ModalController)
   { }
 
@@ -101,7 +101,7 @@ export class SearchAutoCompletePage implements OnInit
     console.log(searchedValue);
     if(searchedValue.length > 0 && searchedValue != "" && searchedValue != null && searchedValue != undefined)
     {
-      this.is_searched=true;
+      //this.is_searched=true;
       this.resultData = this.resultData.filter(currentItem => 
       {
         let PoemName = (currentItem.PoemName) ? currentItem.PoemName : "novalue"; 
@@ -116,7 +116,7 @@ export class SearchAutoCompletePage implements OnInit
     }
     else 
     {
-      this.is_searched=false;
+      //this.is_searched=false;
       this.resultData = this.resultDataOnSearch;
     }
   }

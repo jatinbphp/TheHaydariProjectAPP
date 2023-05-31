@@ -13,7 +13,7 @@
 	<div class="src-box">
 		<ion-searchbar #autofocus placeholder="Search by poem, poet, reciter, language" [debounce]="1000" (ionChange)="SearchPoem($event)"></ion-searchbar>
 	</div>
-	<ion-grid *ngIf="is_searched == true">
+	<ion-grid><!--*ngIf="is_searched == true"-->
 		<ion-row *ngIf="resultData.length > 0" class="list-boxes-main" [ngClass]="{'grid-view' : show_in_view == 'grid'}">
 			<ion-col *ngFor="let poems of resultData; let p = index;" [ngClass]="{'clr-green' : p % 2 == 0}" class="item-box-main clr-red" (click)="getPoemsDetail(poems.id)">				
 				<ion-label>
